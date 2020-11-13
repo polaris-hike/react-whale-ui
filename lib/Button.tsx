@@ -1,8 +1,10 @@
+import * as React from 'react';
+
 function Button() {
     return (
-        <div>
+        <button>
             按钮
-        </div>
+        </button>
     )
 }
 
