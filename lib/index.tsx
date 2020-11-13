@@ -1,8 +1,7 @@
-// @ts-ignore
-import add from "./test.ts";
+import * as React from 'react';
+import ReactDom from 'react-dom';
 
-const a = 1;
-const b = 2;
-const c = add(a, b);
-console.log(c);
-console.log(4)
+console.log('React');
+console.log(React);
+console.log('ReactDom');
+console.log(ReactDom);
