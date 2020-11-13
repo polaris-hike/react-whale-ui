@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve",
-    "build": "npx webpack"
+    "start": "cross-env NODE_ENV=development webpack serve --config webpack.config.dev.js",
+    "build": "cross-env NODE_ENV=production npx webpack --config webpack.config.prod.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.9",
     "awesome-typescript-loader": "^5.2.1",
+    "cross-env": "^7.0.2",
     "html-webpack-plugin": "^4.5.0",
     "typescript": "^4.0.5",
     "webpack": "^5.4.0",

@@ -1,8 +1,5 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-module.exports = {
-    mode: 'production',
+module.exports = { // webpack 开发生产环境共有配置
     entry: {// 入口
         index: './lib/index.tsx'
     },
@@ -21,26 +18,5 @@ module.exports = {
                 loader: 'awesome-typescript-loader'
             }
         ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'whale-ui',
-            template: 'index.html'
-        })
-    ],
-    externals: {// 打包排除 react reactDOM
-        react:{
-            commonjs:'react',
-            commonjs2:'react',
-            amd:'react',
-            root:'React'
-        },
-        'react-dom':{
-            commonjs:'react-dom',
-            commonjs2:'react-dom',
-            amd:'react-dom',
-            root:'ReactDOM'
-        }
     }
-}
-;
+};
