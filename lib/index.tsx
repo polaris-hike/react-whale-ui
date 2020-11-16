@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useRef, useState} from 'react';
 import   ReactDOM from 'react-dom';
 //import Button from "./Button";
 const _state:any = [];
@@ -33,5 +33,42 @@ const App = ()=>{
 }
 
 
+// setN 才会render
+/*const App1 = ()=>{
+ const [n,setN] = useState(0);
+ const log = ()=>{
+     setTimeout(()=>{
+         console.log('n:'+n)
+     },1000)
+ }
+ return (
+     <div>
+         n:{n}
+         <button onClick={()=>setN(n+1)}>+1</button>
+         <button onClick={log}>log</button>
+     </div>
+ )
+}*/
 
-ReactDOM.render(<App />,document.getElementById('root'))
+const App2 = ()=>{
+    const nRef = useRef(0);
+    const update = useState(0)[1]
+    const log = ()=>{
+        setTimeout(()=>{
+            console.log('n:'+nRef.current)
+        },1000)
+    }
+    return (
+        <div>
+            n:{nRef.current}
+           { <button onClick={()=>{nRef.current+=1,update(nRef.current)} }>+1</button>}
+            <button onClick={log}>log</button>
+        </div>
+    )
+}
+
+
+
+
+
+ReactDOM.render(<App2 />,document.getElementById('root'))
