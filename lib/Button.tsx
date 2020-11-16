@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 function Button() {
+    const [n,setN] = useState(0)
     return (
-        <button>
-            按钮
+        <button onClick={()=>setN(n+1)}>
+            按钮{n}
         </button>
     )
 }
