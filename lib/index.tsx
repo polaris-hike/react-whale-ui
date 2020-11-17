@@ -1,45 +1,82 @@
-import React, {useRef, useState} from 'react';
-import   ReactDOM from 'react-dom';
+import React, {useReducer, useRef, useState} from 'react';
+import ReactDOM from 'react-dom';
 //import Button from "./Button";
 
-function App(){
-    // useState 接受函数
-    const [user,setUser] = useState(()=>({name:'wuxuwei',age:18}))
-    const [n,setN] = useState(0)
-    const change = ()=>{
-        // 不会局部更新
-        /*setUser({  // 这样子的话 age 会消失
-            name:'hjj',
-        })*/
-        // 如果要更新要求对象地址要变
-         /*user.name= 'hjj' // 这样子的话不会改变，对象要求地址改变才会触发render
-         setUser(user)*/
-        setUser({
-            name:'hjj',
-            age:19
-        })
+const initial = {
+    name:'',
+    age:18,
+    nation:'汉族'
+}
+const reducer = (state:any, action:any) => {
+    if (action.type === 'change') {
+        return {...initial,...action.formData}
+    } else if (action.type === 'reset') {
+        return initial
     }
-    const changeN = ()=>{
-        /*setN(n+1) // 这样子n只会+1
-        setN(n+1)*/
+}
 
-        // setState 接受函数
-        setN(n=>n+1)
-        setN(n=>n+1)
+/*function App() {
+    const [state, dispatch] = useReducer(reducer, initial)
+    const {n} = state
+    const onClick = ()=>{
+        dispatch({type:'add'})
+    }
+    const onClick1 = ()=>{
+        dispatch({type:'mult'})
+    }
+    const onClick2 = ()=>{
+        dispatch({type:'dele'})
     }
     return (
         <div>
-            <p>name:{user.name}</p>
-            <p>age:{user.age}</p>
-            <button onClick={change}>set</button>
-            -----------------------------------------
-            <p>n{n}</p>
-            <button onClick={changeN}>n+1</button>
+            <h1>n:{n}</h1>
+            <button onClick={onClick}>+1</button>
+            <button onClick={onClick1}>*2</button>
+            <button onClick={onClick2}>-1</button>
+        </div>
+    )
+}*/
+
+function App() {
+    const [state, dispatch] = useReducer(reducer, initial);
+    const onReset = ()=>{
+        dispatch({type:'reset'})
+    }
+    return (
+        <div>
+            <form onReset={onReset}>
+                <div>
+                    <label >
+                        姓名
+                        <input type="text"
+                            value={state.name}
+                            onChange={e=>dispatch({type:'change',formData:{name:e.target.value}})}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label >
+                        年龄
+                        <input type="text"
+                            value={state.age}
+                            onChange={e=>dispatch({type:'change',formData:{age:e.target.value}})}
+                        />
+                    </label>
+                </div>
+               <div>
+                   <label >
+                       民族
+                       <input type="text"
+                           value={state.nation}
+                           onChange={e=>dispatch({type:'change',formData:{nation:e.target.value}})}
+                       />
+                   </label>
+               </div>
+                <button type="reset">重置</button>
+                <hr/>
+                {JSON.stringify(state)}
+            </form>
         </div>
     )
 }
-
-
-
-
-ReactDOM.render(<App />,document.getElementById('root'))
+ReactDOM.render(<App/>, document.getElementById('root'))
