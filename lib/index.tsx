@@ -4,7 +4,6 @@ import Icon from './icon';
 
 const fn: React.MouseEventHandler = (e) => {
     console.log(e);
-    console.dir(e.target.href);
     console.log(111);
 };
 
@@ -12,7 +11,7 @@ function App() {
 
     return (
         <div>
-            <Icon name="wechat" onClick={fn}/>
+            <Icon name="wechat" className='qqq' onClick={fn}/>
             <Icon name="alipay" onClick={fn}/>
         </div>
     ) ;

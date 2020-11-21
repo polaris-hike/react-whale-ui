@@ -1,15 +1,17 @@
 import React from 'react';
 import './importAll.js';
 import './icon.scss';
+import classes from './helpers/classes';
 
-interface IconProps {
-    name: String,
-    onClick:React.MouseEventHandler<SVGElement>
+interface IconProps extends React.SVGAttributes<SVGElement>{
+    name: string,
 }
 
 const Icon: React.FunctionComponent<IconProps> = (props) => {
+    const {className,...restProps} = props; //restProps 为其余svg接受的参数
+
     return (
-        <svg className="whale-icon" aria-hidden="true" onClick={props.onClick}>
+        <svg className={classes('whale-icon',className)}     aria-hidden="true" {...restProps} >
             <use xlinkHref={`#${props.name}`}/>
         </svg>
     );
