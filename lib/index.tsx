@@ -2,18 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Icon from './icon';
 
-const fn = (e:any)=>{
+const fn: React.MouseEventHandler = (e) => {
     console.log(e);
+    console.dir(e.target.href);
     console.log(111);
-}
-function App(){
+};
+
+function App() {
 
     return (
         <div>
             <Icon name="wechat" onClick={fn}/>
-            <Icon name="alipay"  onClick={fn}/>
+            <Icon name="alipay" onClick={fn}/>
         </div>
-    )
+    ) ;
 }
 
 ReactDOM.render(<App/>, document.getElementById('root'));
