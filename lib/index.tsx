@@ -7,7 +7,7 @@ function App(){
     return (
         <div>
             App
-            <Icon name="weChat"/>
+            <Icon name="wechat"/>
         </div>
     )
 }

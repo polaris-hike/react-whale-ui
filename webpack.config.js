@@ -16,6 +16,10 @@ module.exports = { // webpack 开发生产环境共有配置
             {
                 test: /\.tsx?$/, // 对tsx或ts文件用awesome-typescript-loader 进行转义，因为浏览器不识别ts文件
                 loader: 'awesome-typescript-loader'
+            },
+            {
+                test:/\.svg$/,
+                loader: 'svg-sprite-loader'
             }
         ]
     }

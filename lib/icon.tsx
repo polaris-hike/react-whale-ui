@@ -1,4 +1,5 @@
 import React from 'react';
+require('../assets/iconfont/iconfont.js')
 
 interface IconProps {
     name:String
@@ -7,7 +8,9 @@ interface IconProps {
 const Icon:React.FunctionComponent<IconProps>  = (props)=> {
     return (
         <div>
-            {props.name}
+            <svg className="icon" aria-hidden="true">
+                <use xlinkHref={`#icon-${props.name}`} />
+            </svg>
         </div>
     )
 
