@@ -1,18 +1,18 @@
 import React from 'react';
-require('../assets/iconfont/iconfont.js')
+import './importAll.js'
 
 interface IconProps {
-    name:String
+    name: String
 }
 
-const Icon:React.FunctionComponent<IconProps>  = (props)=> {
+const Icon: React.FunctionComponent<IconProps> = (props) => {
     return (
         <div>
-            <svg className="icon" aria-hidden="true">
-                <use xlinkHref={`#icon-${props.name}`} />
-            </svg>
+            {<svg className="icon" aria-hidden="true">
+                <use xlinkHref={`#${props.name}`}/>
+            </svg>}
         </div>
-    )
+    );
 
-}
-export default Icon
+};
+export default Icon;

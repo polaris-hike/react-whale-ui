@@ -1,4 +1,5 @@
 const path = require('path');
+var webpack = require('webpack');
 module.exports = { // webpack 开发生产环境共有配置
     entry: {// 入口
         index: './lib/index.tsx'
