@@ -1,5 +1,6 @@
 import React from 'react';
 import './importAll.js'
+import './icon.scss'
 
 interface IconProps {
     name: String

@@ -21,6 +21,10 @@ module.exports = { // webpack 开发生产环境共有配置
             {
                 test:/\.svg$/,
                 loader: 'svg-sprite-loader'
+            },
+            {
+                test:/\.scss$/,
+                loader: ['style-loader','css-loader','sass-loader']
             }
         ]
     }
