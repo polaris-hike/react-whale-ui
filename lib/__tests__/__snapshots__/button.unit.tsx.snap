@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`button 是个 div 1`] = `
-<button>
+<button
+  onClick={[Function]}
+>
   按钮
+  0
 </button>
 `;
