@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon 是个 svg 1`] = `
+<svg
+  aria-hidden="true"
+  className="whale-icon"
+>
+  <use
+    xlinkHref="#wechat"
+  />
+</svg>
+`;
