@@ -12,7 +12,6 @@
     "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "noUnusedParameters": false,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "importHelpers": true,
