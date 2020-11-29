@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Dialog = () => {
+interface Props {
+    visible: boolean
+}
+
+const Dialog: React.FunctionComponent<Props> = (props) => {
+    console.log(props);
+    const {visible} = props;
     return (
-        <div>
-            dialog
-        </div>
+        visible ? <div>dialog</div> : null
     );
 };
 
