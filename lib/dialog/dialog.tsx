@@ -2,7 +2,7 @@ import React from 'react';
 import './dialog.scss';
 import Icon from '../icon/icon';
 import {scopedClassMaker} from '../classes';
-
+import '../index.scss'
 interface Props {
     visible: boolean;
 }
