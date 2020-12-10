@@ -6,7 +6,7 @@ import {scopedClassMaker} from '../classes';
 import '../index.scss'
 interface Props {
     visible: boolean;
-    buttons:ReactElement[];
+    buttons?:ReactElement[];
     onClose:ReactEventHandler;
     closeOnBody?:boolean
 }
@@ -37,7 +37,7 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
                         <main className={scopedClass('main')}>{props.children}</main>
                         <footer className={scopedClass('footer')}>
                             {
-                                props.buttons.map(((button,index)=>
+                                props.buttons && props.buttons.map(((button,index)=>
                                         React.cloneElement(button,{key:index})
                                 ))
                             }
@@ -54,5 +54,18 @@ const Dialog: React.FunctionComponent<Props> = (props) => {
 Dialog.defaultProps = {
     closeOnBody:true
 }
+
+const message = (content:string)=>{
+    const component  = <Dialog visible={true} onClose={()=>{
+        ReactDOM.render(React.cloneElement(component,{visible:false}),div)
+        ReactDOM.unmountComponentAtNode(div)
+        div.remove()
+    }}>{content}</Dialog>
+    const div = document.createElement('div')
+    document.body.append(div)
+    ReactDOM.render(component,div)
+}
+
+export {message}
 
 export default Dialog;
