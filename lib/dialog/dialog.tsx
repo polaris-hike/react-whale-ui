@@ -12,7 +12,6 @@ interface Props {
   closeOnBody?: boolean
 }
 
-
 const scopedClass = scopedClassMaker('whale-dialog');
 
 const Dialog: React.FunctionComponent<Props> = (props) => {
@@ -56,15 +55,21 @@ Dialog.defaultProps = {
   closeOnBody: true
 };
 
-const message = (content: string) => {
-  const component = <Dialog visible={true} onClose={() => {
+const model = (content:ReactNode,buttons?:ReactElement[])=>{
+  const onClose = () => {
     ReactDOM.render(React.cloneElement(component, {visible: false}), div);
     ReactDOM.unmountComponentAtNode(div);
     div.remove();
-  }}>{content}</Dialog>;
+  };
+  const component = <Dialog visible={true} buttons={buttons} onClose={onClose}>{content}</Dialog>;
   const div = document.createElement('div');
   document.body.append(div);
   ReactDOM.render(component, div);
+return onClose
+}
+
+const message = (content: string) => {
+  model(content)
 };
 
 const confirm = (content: string, yes: () => void, no: () => void) => {
@@ -76,34 +81,11 @@ const confirm = (content: string, yes: () => void, no: () => void) => {
     no && no();
     onClose();
   };
-  const onClose = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-    ReactDOM.unmountComponentAtNode(div);
-    div.remove();
-  };
-  const component = (
-    <Dialog visible={true}
-            onClose={onClose}
-            buttons={[<button onClick={() => onYes()}>yes</button>, <button onClick={() => onNo()}>no</button>]}
-    >{content}</Dialog>
-  );
-
-  const div = document.createElement('div');
-  document.body.append(div);
-  ReactDOM.render(component, div);
-};
-
-const model = (content: ReactNode) => {
-  const onClose = () => {
-    ReactDOM.render(React.cloneElement(component, {visible: false}), div);
-    ReactDOM.unmountComponentAtNode(div);
-    div.remove();
-  };
-  const component = <Dialog visible={true} onClose={onClose}>{content}</Dialog>;
-  const div = document.createElement('div');
-  document.body.append(div);
-  ReactDOM.render(component, div);
-  return onClose;
+  const buttons = [
+    <button onClick={onYes}>yes</button>,
+    <button onClick={onNo}>no</button>
+  ]
+  const onClose = model(content,buttons)
 };
 
 export {message, confirm, model};
